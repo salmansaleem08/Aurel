@@ -1,9 +1,9 @@
 {
-  "name": "aurel-tmp",
+  "name": "aurel",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -23,5 +23,8 @@
     "tailwindcss": "^4",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@11.9.0"
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": ">=20"
+  }
 }

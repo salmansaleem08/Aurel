@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aurel
 
-## Getting Started
+Marketing site for Aurel — Next.js App Router, Tailwind CSS only, pnpm, Vercel-ready.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router, Turbopack)
+- **React 19**
+- **Tailwind CSS v4** (no custom CSS modules)
+- **pnpm**
+- Scroll-film frames: `public/frames/{expand,close,release,rotate}/*.webp`
+
+## Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command        | Description              |
+| -------------- | ------------------------ |
+| `pnpm dev`     | Dev server (Turbopack)   |
+| `pnpm build`   | Production build         |
+| `pnpm start`   | Serve production build   |
+| `pnpm lint`    | ESLint                   |
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+Home page is composed of section components:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+  app/                  # layout + page
+  components/
+    layout/             # Header, Footer
+    home/               # HeroFilm, Products, About, Materials, Listening, Notes, Contact
+  lib/film.ts           # frame path helpers
+public/frames/          # WebP scroll sequences (~48MB)
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy (Vercel)
 
-## Deploy on Vercel
+1. Push the repo to GitHub / GitLab / Bitbucket.
+2. Import in Vercel — framework preset: **Next.js**.
+3. Build command: `pnpm build` (auto-detected via `packageManager`).
+4. Node **≥ 20**.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Frames are static assets under `public/frames`. For large binary history, consider Git LFS.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Next work
+
+- Scroll-scrubbed canvas film (bidirectional), full-bleed, no side letterboxing
+- Frame edge fill (black / outpaint) so the headphone stays fully visible on mobile
+- Flesh out Products → Contact content + mobile polish
